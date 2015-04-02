@@ -1,0 +1,18 @@
+{
+  "name": "mongoCert",
+  "version": "0.0.1",
+  "description": "mongo test apps",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael J Erwin",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.12.2",
+    "consolidate": "^0.11.0",
+    "express": "^4.12.3",
+    "mongodb": "^1.4.34",
+    "swig": "^1.4.2"
+  }
+}
