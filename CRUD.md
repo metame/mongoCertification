@@ -55,7 +55,10 @@ MongoDb can return documents based on the type of information in the value for a
 
 #### Regular expressions - $regex
 To return all documents with a "a" in the name field: `db.people.find( {name: { $regex : "a" } } )`
-All documents with name field beginning with A & ending with e: `db.people.find( { name : { $regex : "^A", $regex : "e$" } } )`
+All documents with name field beginning with A & ending with e: `db.people.find( { name : { $regex : "^A", $regex : "e$" } } );`
+Other commong $regex expressions:
+* `^Microsoft` matches all strings that start with the word 'Microsoft'
+* `Internet$` matches all strings that end with Internet
 
 ### Combining queries and query operators
 
@@ -75,8 +78,10 @@ Thus, MongoDB will not find values in objects or arrays within arrays.
 #### Using $all for Array queries
 Using $all checks for a subset within an array and does not care about order, e.g. `db.accounts.find( { favorites: { $all : [ "pretzels", "beer" ] } } );` will return docs where the 'favorites' field's value is an array that includes both "pretzels" and "beer" even if that array also contains other values.
 
-#### Using $in for Array queries
+#### Using $in & $nin for Array queries
 $in is using an array as a query value to include all documents whose value matches one of the array values, e.g. db.accounts.find( { name: { $in: [ "Howard", "John" ] } } );` will return all documents where the name field's value is either "Howard" or "John".
+
+$nin can also be used for 'not in'.
 
 It could be said then that $all is used to query array values within a document and $in is used to query values within a document using an array.
 

@@ -15,7 +15,7 @@ MongoClient.connect('mongodb://localhost:27017/course', function(err, db) {
 
                 console.dir(data);
 
-                db.cclose();
+                db.close();
             });
         }
     });
