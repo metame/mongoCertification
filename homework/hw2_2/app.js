@@ -1,29 +1,35 @@
 var MongoClient = require('mongodb').MongoClient;
 
-MongoClient.connect('mongodb://localhost:27017/course', function(err, db) {
+MongoClient.connect('mongodb://localhost:27017/weather', function(err, db) {
     if(err) throw err;
     
-    var weather = db.collection('weather');
+    var weather = db.collection('data');
     var cursor = weather.find();
-    cursor.sort = ([['State', 1],['Temperature', -1]]);
+    cursor.sort([['State', 1],['Temperature', -1]]);
     var currentState = '';
     cursor.each(function(err, doc) {
-       if(err) throw err;
+      if(err) {
+        console.log(err.message);
+      };
        
-       if(doc.State !== currentState){
+       if(!doc){
+        console.log('no doc found');
+       }
+
+       else if(doc.State !== currentState){
            
-           console.log(doc.State);
+          var operator = { '$set' : { 'month_high' : true } };
            
-        //   var operator = { '$set' : { 'month_high' : true } };
-           
-        //   weather.update(doc, operator, function(err, updated){
-        //       if(err) throw err;
+          weather.update(doc, operator, function(err, updated){
+              if(err) throw err;
                
-        //       console.dir('Month high for ' + doc.State + ' found!');
-        //   });
+              console.dir('Month high for ' + doc.State + ' is ' + doc.Temperature + '!');
+          });
            
-           currentState = doc.State;
+          currentState = doc.State;
+
        }
 
     });
+
 });
