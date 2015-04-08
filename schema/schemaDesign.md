@@ -53,3 +53,51 @@ Consider:
 * Size of items
 * Atomicity of data
 
+## 1:Many
+e.g. city : person
+With a city like NYC with 8MM people, the best way to do it is with true linking
+
+### True Linking
+NYC & People
+* People colletion with name & city
+* city collection with all city attributes
+
+But in one to few there could be something simpler
+
+### One to Few
+e.g. blog post : comments
+In this case, it's feasible to have a collection of one, with an array of the other, i.e. embedding the few within the one.
+
+## Many to Many Relations
+There aren't many truly large many:many but instead often few:few.
+
+### Books : Authors
+In this case, two separate collections books and authors could work well with index references in one or both collections to the others. That is a book with _id : 12 would be referenced as book : 12 within the author's document.
+
+### Students : Teachers
+Still, two collections would make sense with array indices in each or just one depending on access patterns.
+
+## Multikey Indexes
+Taking the Students : Teachers example, there are two questions that may come up:
+* What teachers have what students?
+* What students have what teachers?
+Basically, a multikey index is creating an index of a particular key within a document (which is an addition to the default index of _id).  This allows for efficient querying when links are built between collections.  Taking our example, if an index was created of the 'teachers' key within the 'students' collection, then querying what students had what teachers becomes very easy and efficient simply by using the linked indexes.
+
+## Benefits of Embedding
+The main benefit: *Improved Read Performance*
+Disk reads are typically high latency and high bandwidth, meaning a single read request is better than multiple read requests.
+
+## Trees
+How to represent trees.
+e.g. ecommerce site categories
+Home : outdoors : Winter : Snow
+Instead of referencing trees, use children and ancestors.
+As children can be verbose, it may be much more concise to list ancestors in a single key as an array.  It's important to always keep access patterns in mind and how these trees are to be displayed within the application.
+
+## When to Denormalize
+* 1 : 1 - Embed
+* 1 : Many - Embed (from the many to the one)
+* Many : Many - Link
+These general rules help mitigate risk of modification anamolies.
+
+
