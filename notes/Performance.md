@@ -50,7 +50,41 @@ This doesn't mean that two keys couldn't have array values in different document
 ### Dot Notation & Multikey
 You can use dot notation to create multikey indexes of values beyond just top-level keys.
 
+### Unique Indexes
+Unique indexes enforce the constraint that no two keys within an index can have the same value.
+This means the create index will fail if two keys have the same value.
+The call for creating a unique index passes `unique:true` as the second argument to the `createIndex` call, e.g. `db.users.createIndex({user_id: 1},{unique: true});`.
 
+### Sparse Indexes
+Sparse indexes can be used when an index key is missing from a document to be indexed.  If creating a unique index on these documents with missing values, the request would error.  Thus, the `sparse` option. `sparse` is passed as an option in the second argument of the `createIndex` call, e.g. `db.employees.createIndex({college: 1},{unique: true, sparse: true});`.
+
+NOTE: A sparse index can't be used for sorting because there is not an entry in every document.
+
+### Foreground vs. Background Index Creation
+Foreground index creation:
+* fast
+* blocks writers and readers in the database
+* not recommended for production
+
+Background index creation:
+* slow
+* non-blocking for reader/writers
+* better for production system
+
+Foreground index creation is default. To create a background index pass `background: true` as an option in the second argument of the `createIndex` call, e.g. `db.students.createIndex({'scores.score':1},{background: true});`.
+
+# Explain
+Explain is used to understand what's happening during a particular query.  It's very useful to understandd performance and how the db requests are done. The explain option was called using `explain()` after the call in mongo versions prior to 3.0.  Starting in 3.0, it's preferable to use explain after the collection instead, then add the call.
+
+The results of `explain()` returns the first action in the innermost document and can be traced up from there.
+
+## Explainable objects
+Creating an explainable object allows for explainable operations to be called on it.  Creating an explainable object is simply `exp = db.collection.explain()`.  `exp.help` would then show all potential operations for an explainable option.
+
+## Explain Modes
+1. query planner - the default mode explains what plan was used to fill the query
+2. executionStats - includes the query planner mode and also tells what the result would have been if the planned query was run.
+3. allPlansExecution - shows results as if all possible plans were executed.
 
 
 
