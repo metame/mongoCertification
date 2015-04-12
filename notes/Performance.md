@@ -73,6 +73,26 @@ Background index creation:
 
 Foreground index creation is default. To create a background index pass `background: true` as an option in the second argument of the `createIndex` call, e.g. `db.students.createIndex({'scores.score':1},{background: true});`.
 
+### Covered Queries
+A query that can be satisfied completely with an index. An `explain` will show that no documents were scanned.
+
+To do this, the specific keys that are indexed must be projected and (typically) the `_id` field must be projected out.
+
+### When MongoDB uses an Index
+When multiple indexes could be used to satisfy a query, MongoDB creates multiple query plans then chooses the one that returns results the quickest.  MongoDB will then cache this index as the one to be used for future queries of the same form.
+
+### Index Sizes
+It's important to be able to fit the working set into memory, otherwise information will have to be pulled from disk regularly which will signicantly hinder performance.
+This can be checked in several different ways:
+* `db.collection.stats()` has a value for `index sizes`
+* `db.collection.totalIndexSize()` which gives the total index size.
+
+### Index Cardinality
+How many index points are created for each type of index?
+* Regular Index - 1:1
+* Sparse Index - <= docs
+* MultiKey Index - > docs
+
 # Explain
 Explain is used to understand what's happening during a particular query.  It's very useful to understandd performance and how the db requests are done. The explain option was called using `explain()` after the call in mongo versions prior to 3.0.  Starting in 3.0, it's preferable to use explain after the collection instead, then add the call.
 
@@ -85,6 +105,8 @@ Creating an explainable object allows for explainable operations to be called on
 1. query planner - the default mode explains what plan was used to fill the query
 2. executionStats - includes the query planner mode and also tells what the result would have been if the planned query was run.
 3. allPlansExecution - shows results as if all possible plans were executed.
+
+
 
 
 
