@@ -93,6 +93,34 @@ How many index points are created for each type of index?
 * Sparse Index - <= docs
 * MultiKey Index - > docs
 
+### Geospatial Indexes
+A 2D index uses x,y values stored as an array for the same key, e.g. `location: [x,y]`. The index would be created by `createIndex({"location": "2d",type:1});`, where 2d is a reserved index type.
+
+To then query based on this geospatial index, you would then query as `db.stores.find({location:{$near:[50,50]}});` which returns the results in order of increasing distance.
+
+### Geospatial Spherical Indexes
+This is a 3d index, also called a 2dsphere. MongoDB takes a longitude,latitude to map this.  It's based on GeoJSON[geojson.org].
+
+This is done by using two reserved keys `type` and `coordinates` which can be stored at the top level as subdocuments.  To create an index on this, use `db.places.createIndex({location: '2dsphere'});`.
+
+To query, again use the `$near` operator and then nesting the `$geometry` operator whose value is the `type` and `coordinates` to query against along with the `$maxDistance` operator whose value is in meters, e.g. `db.stores.find({loc:{$near:{$geometry:{"type":"Point","coordinates":[-130,39]},$maxDistance: 1000000}}});`
+
+### Text Indexes
+A full text search index or text index for short allows for searching documents for a partial string to return a full document.  This is created as `db.sentences.createIndex({'words':'text'});` then a query can be made as `db.sentences.find({{$text:{$search:'dog'}});`
+
+These queries are not case-sensitive, do not require punctuation, and will omit some helper words like a, an, the.  The `$search` is a logical 'or' so a query of multiple words will return documents with any of those words.
+
+### Efficiency of Index Use
+Goal : Efficient Read/Write Operations
+* Selectivity - minimize records scanned
+* Other ops - How are sorts handled?
+
+Selectivity is the biggest factor to determine index efficiency.  Sort is also important, especially if the sort has to happen in memory.
+
+MongoDB does provide a way to force the db to use a specific index using the `hint()` method which is called after the cursor and any cursor operators.  The name or form of the index you want to use may be passed into the `hint()` call.
+
+To enhance efficiency, it's generally advisable to create an index with the leftmost value being an equality field.
+
 # Explain
 Explain is used to understand what's happening during a particular query.  It's very useful to understandd performance and how the db requests are done. The explain option was called using `explain()` after the call in mongo versions prior to 3.0.  Starting in 3.0, it's preferable to use explain after the collection instead, then add the call.
 
@@ -106,8 +134,35 @@ Creating an explainable object allows for explainable operations to be called on
 2. executionStats - includes the query planner mode and also tells what the result would have been if the planned query was run.
 3. allPlansExecution - shows results as if all possible plans were executed.
 
+# Logging and Profiling
+## Logging
+Mongo automatically logs slow queries (above 100ms) in a default file. This will show in the running mongod instance.
+
+## Profiler
+The profiler will log anything over a specified time to a system.profile file.  The profiler looks at three levels.
+0 - profiler is off
+1 - logs slow queries
+2 - logs all queries (great for general debugging)
+
+The profiler is run using the mongod command with `--profile 1 --slowms 2` which would turn on profiler level 1 and log any queries that take over 2ms.  These documents are logged in the `system.profile` collection which can then have queries ran against it.  E.g. `db.system.profile.find({millis:{$gt:1000}}).sort({ts:-1});`
+
+You can check the profiling level in the mongo shell using `db.getProfilingLevel()`.
+You can get profiling status using `db.getProfilingStatus()` and set profiling status using `db.setProfilingLevel(1,4)` which would turn on Profiling at level 1 logging any query that takes over 4ms to complete.  It can be turned off from the shell using `db.setProfilingLevel(0)`.
 
 
+# Review on performance
+1. Indexes are critical to performance.
+2. Use explain to see how the DB is performing queries.
+3. Use hint command to make the DB use a specific query plan.
+4. Use profiling to understand slow queries.
 
+# Mongotop
+Mongotop is run using a time parameter as the command `mongotop 3` which would run mongotop every 3 seconds.  Mongotop will let you see how much time is being spent on certain types of operations within each database.
 
+# Mongostat
+The `mongostat` command is a performance tuning command.  It will sample the database in a 1 second increment and will give information on inserts, queries, updates, and deletes.  It will give different information based on the storage engine (mmap or wiredtiger).
 
+#Sharding
+Sharding is a technique for splitting up a large collection among multiple servers. In sharding, the application talke to `mongos`, which is a router, that then talks to several `mongod` servers. `mongos` is a range-based system based on a shard key.  To work with sharded databases, the insert command must include the shard key.  Also, if update/remove/find is used without the shard key, `mongos` will broadcast the request to all shards.  Performance is better if the shard key is included.
+
+The `mongos` service is usually colocated on the same server as the application.
