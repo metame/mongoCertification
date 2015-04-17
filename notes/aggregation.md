@@ -167,3 +167,4 @@ The mongo docs have some common SQL examples mapped to the MongoDB aggregation f
 * 16MB limit if returning results in one document (which is the default in Python)
 * sharded systems will collect all results from the aggregation pipeline if using $group or $sort which can hurt scalability. These limitations can be overcome by using a tool like Hadoop or the map/reduce functionality built into MongoDB for very simple tasks.
 
+
