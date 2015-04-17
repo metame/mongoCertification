@@ -173,3 +173,6 @@ Counting number of comments made by a specific author on a blog:
 
 Getting average population of cities > 25K people in NY & CA from zip codes database:
 `db.zips.aggregate([{$group:{_id:{city:"$city",state:"$state"},pop:{$sum:"$pop"}}},{$match:{$or:[{"_id.state":"CA"},{"_id.state":"NY"}],pop:{$gt:25000}}},{$group:{_id:null,avg_pop:{$avg:"$pop"}}}])`
+
+Getting class average from database of student scores.
+`db.grades.aggregate([{$unwind:"$scores"},{$match:{$or:[{"scores.type":"exam"},{"scores.type":"homework"}]}},{$group:{_id:{class:"$class_id",student:"$student_id"},avg_scores:{$avg:"$scores.score"}}},{$group:{_id:"$_id.class",class_avg:{$avg:"$avg_scores"}}},{$sort:{class_avg:-1}},{$limit:1}])`
