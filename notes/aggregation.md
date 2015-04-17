@@ -167,9 +167,3 @@ The mongo docs have some common SQL examples mapped to the MongoDB aggregation f
 * 16MB limit if returning results in one document (which is the default in Python)
 * sharded systems will collect all results from the aggregation pipeline if using $group or $sort which can hurt scalability. These limitations can be overcome by using a tool like Hadoop or the map/reduce functionality built into MongoDB for very simple tasks.
 
-## Example aggregation queries
-Counting number of comments made by a specific author on a blog:
-`db.posts.aggregate([{$unwind:"$comments"},{$group:{_id:"$comments.author",count:{$sum:1}}},{$sort:{count:-1}},{$limit:1}])`.
-
-Getting average population of cities > 25K people in NY & CA from zip codes database:
-`db.zips.aggregate([{$group:{_id:{city:"$city",state:"$state"},pop:{$sum:"$pop"}}},{$match:{$or:[{"_id.state":"CA"},{"_id.state":"NY"}],pop:{$gt:25000}}},{$group:{_id:null,avg_pop:{$avg:"$pop"}}}])`
