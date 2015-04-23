@@ -48,4 +48,18 @@ If you miss a node, the driver will automatically detect that the node listed is
 ### Replica Set Failover in the Node.js Driver
 If the primary node is unavailable, the driver will buffer all writes and reads until the failover is complete.
 
+### Read Preferences
+The read preference is what node you want to read from.  There are several options for this:
+* Primary
+* Primary Preferred (primary, then secondary)
+* Secondary
+* Secondary Preferred (secondary, then primary)
+* Nearest (based on ping time)
 
+If you choose secondary, you will not have a strongly consistent read. You will have an eventually consistent read, which means you will eventually have the data on the secondary but may not be when you read it.
+
+## Implications of Replication
+* Seed Lists
+* Write Concern
+* Read Preferences
+* Errors can happen
