@@ -1,0 +1,98 @@
+2015-04-23T15:36:46.223-0400 I JOURNAL  [initandlisten] journal dir=\..\..\Sites\mongoCert\data\rs1\journal
+2015-04-23T15:36:46.225-0400 I JOURNAL  [initandlisten] recover : no journal files present, no recovery needed
+2015-04-23T15:36:46.290-0400 I JOURNAL  [durability] Durability thread started
+2015-04-23T15:36:46.303-0400 I JOURNAL  [journal writer] Journal writer thread started
+2015-04-23T15:36:46.306-0400 I CONTROL  [initandlisten] MongoDB starting : pid=6536 port=27017 dbpath=\..\..\Sites\mongoCert\data\rs1 64-bit host=my_yoga
+2015-04-23T15:36:46.306-0400 I CONTROL  [initandlisten] targetMinOS: Windows 7/Windows Server 2008 R2
+2015-04-23T15:36:46.307-0400 I CONTROL  [initandlisten] db version v3.0.2
+2015-04-23T15:36:46.307-0400 I CONTROL  [initandlisten] git version: 6201872043ecbbc0a4cc169b5482dcf385fc464f
+2015-04-23T15:36:46.307-0400 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1m-fips 19 Mar 2015
+2015-04-23T15:36:46.307-0400 I CONTROL  [initandlisten] build info: windows sys.getwindowsversion(major=6, minor=1, build=7601, platform=2, service_pack='Service Pack 1') BOOST_LIB_VERSION=1_49
+2015-04-23T15:36:46.307-0400 I CONTROL  [initandlisten] allocator: system
+2015-04-23T15:36:46.307-0400 I CONTROL  [initandlisten] options: { net: { port: 27017 }, replication: { oplogSizeMB: 64, replSet: "m101" }, storage: { dbPath: "\..\..\Sites\mongoCert\data\rs1", mmapv1: { smallFiles: true } }, systemLog: { destination: "file", path: "..\..\Sites\mongoCert\homework\hw6-5\1.log" } }
+2015-04-23T15:36:46.316-0400 I INDEX    [initandlisten] allocating new ns file \..\..\Sites\mongoCert\data\rs1\local.ns, filling with zeroes...
+2015-04-23T15:36:46.479-0400 I STORAGE  [FileAllocator] allocating new datafile \..\..\Sites\mongoCert\data\rs1\local.0, filling with zeroes...
+2015-04-23T15:36:46.480-0400 I STORAGE  [FileAllocator] creating directory \..\..\Sites\mongoCert\data\rs1\_tmp
+2015-04-23T15:36:46.488-0400 I STORAGE  [FileAllocator] done allocating datafile \..\..\Sites\mongoCert\data\rs1\local.0, size: 16MB,  took 0.005 secs
+2015-04-23T15:36:46.524-0400 I REPL     [initandlisten] Did not find local replica set configuration document at startup;  NoMatchingDocument Did not find replica set configuration document in local.system.replset
+2015-04-23T15:36:46.525-0400 I NETWORK  [initandlisten] waiting for connections on port 27017
+2015-04-23T15:38:44.467-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49333 #1 (1 connection now open)
+2015-04-23T15:38:52.869-0400 I NETWORK  [conn1] end connection 127.0.0.1:49333 (0 connections now open)
+2015-04-23T15:38:57.076-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49334 #2 (1 connection now open)
+2015-04-23T15:40:22.838-0400 I REPL     [conn2] replSetInitiate admin command received from client
+2015-04-23T15:40:22.848-0400 I REPL     [conn2] replSet replSetInitiate config object with 3 members parses ok
+2015-04-23T15:40:22.851-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49349 #3 (2 connections now open)
+2015-04-23T15:40:22.852-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49350 #4 (3 connections now open)
+2015-04-23T15:40:22.853-0400 I REPL     [ReplicationExecutor] New replica set config in use: { _id: "m101", version: 1, members: [ { _id: 0, host: "localhost:27017", arbiterOnly: false, buildIndexes: true, hidden: false, priority: 1.0, tags: {}, slaveDelay: 0, votes: 1 }, { _id: 1, host: "localhost:27018", arbiterOnly: false, buildIndexes: true, hidden: false, priority: 1.0, tags: {}, slaveDelay: 0, votes: 1 }, { _id: 2, host: "localhost:27019", arbiterOnly: false, buildIndexes: true, hidden: false, priority: 1.0, tags: {}, slaveDelay: 0, votes: 1 } ], settings: { chainingAllowed: true, heartbeatTimeoutSecs: 10, getLastErrorModes: {}, getLastErrorDefaults: { w: 1, wtimeout: 0 } } }
+2015-04-23T15:40:22.853-0400 I REPL     [ReplicationExecutor] This node is localhost:27017 in the config
+2015-04-23T15:40:22.853-0400 I REPL     [ReplicationExecutor] transition to STARTUP2
+2015-04-23T15:40:22.853-0400 I REPL     [conn2] ******
+2015-04-23T15:40:22.853-0400 I REPL     [conn2] creating replication oplog of size: 64MB...
+2015-04-23T15:40:22.854-0400 I REPL     [ReplicationExecutor] Member localhost:27018 is now in state STARTUP
+2015-04-23T15:40:22.854-0400 I STORAGE  [FileAllocator] allocating new datafile \..\..\Sites\mongoCert\data\rs1\local.1, filling with zeroes...
+2015-04-23T15:40:22.854-0400 I REPL     [ReplicationExecutor] Member localhost:27019 is now in state STARTUP
+2015-04-23T15:40:22.855-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49351 #5 (4 connections now open)
+2015-04-23T15:40:22.855-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49352 #6 (5 connections now open)
+2015-04-23T15:40:22.855-0400 I NETWORK  [conn5] end connection 127.0.0.1:49351 (4 connections now open)
+2015-04-23T15:40:22.855-0400 I NETWORK  [conn6] end connection 127.0.0.1:49352 (4 connections now open)
+2015-04-23T15:40:22.860-0400 I STORAGE  [FileAllocator] done allocating datafile \..\..\Sites\mongoCert\data\rs1\local.1, size: 128MB,  took 0.004 secs
+2015-04-23T15:40:22.866-0400 I REPL     [conn2] ******
+2015-04-23T15:40:22.866-0400 I REPL     [conn2] Starting replication applier threads
+2015-04-23T15:40:22.868-0400 I REPL     [ReplicationExecutor] transition to RECOVERING
+2015-04-23T15:40:22.870-0400 I REPL     [ReplicationExecutor] transition to SECONDARY
+2015-04-23T15:40:24.855-0400 I REPL     [ReplicationExecutor] Member localhost:27018 is now in state STARTUP2
+2015-04-23T15:40:24.855-0400 I REPL     [ReplicationExecutor] Standing for election
+2015-04-23T15:40:24.855-0400 I REPL     [ReplicationExecutor] Member localhost:27019 is now in state STARTUP2
+2015-04-23T15:40:24.856-0400 I REPL     [ReplicationExecutor] not electing self, localhost:27018 would veto with 'I don't think localhost:27017 is electable because the member is not currently a secondary (mask 0x8)'
+2015-04-23T15:40:24.856-0400 I REPL     [ReplicationExecutor] not electing self, we are not freshest
+2015-04-23T15:40:24.884-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49357 #7 (4 connections now open)
+2015-04-23T15:40:24.884-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49358 #8 (5 connections now open)
+2015-04-23T15:40:24.919-0400 I NETWORK  [conn8] end connection 127.0.0.1:49358 (4 connections now open)
+2015-04-23T15:40:24.919-0400 I NETWORK  [conn7] end connection 127.0.0.1:49357 (4 connections now open)
+2015-04-23T15:40:26.857-0400 I REPL     [ReplicationExecutor] Member localhost:27019 is now in state SECONDARY
+2015-04-23T15:40:26.857-0400 I REPL     [ReplicationExecutor] Standing for election
+2015-04-23T15:40:26.857-0400 I REPL     [ReplicationExecutor] Member localhost:27018 is now in state SECONDARY
+2015-04-23T15:40:26.858-0400 I REPL     [ReplicationExecutor] replSet info electSelf
+2015-04-23T15:40:26.859-0400 I REPL     [ReplicationExecutor] replSet election succeeded, assuming primary role
+2015-04-23T15:40:26.859-0400 I REPL     [ReplicationExecutor] transition to PRIMARY
+2015-04-23T15:40:26.874-0400 I REPL     [rsSync] transition to primary complete; database writes are now permitted
+2015-04-23T15:40:52.884-0400 I NETWORK  [conn3] end connection 127.0.0.1:49349 (2 connections now open)
+2015-04-23T15:40:52.886-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49361 #9 (3 connections now open)
+2015-04-23T15:40:52.886-0400 I NETWORK  [conn4] end connection 127.0.0.1:49350 (2 connections now open)
+2015-04-23T15:40:52.887-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49363 #10 (3 connections now open)
+2015-04-23T15:41:08.603-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49371 #11 (4 connections now open)
+2015-04-23T15:41:08.616-0400 I NETWORK  [conn11] end connection 127.0.0.1:49371 (3 connections now open)
+2015-04-23T15:41:08.622-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49372 #12 (4 connections now open)
+2015-04-23T15:41:08.623-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49373 #13 (5 connections now open)
+2015-04-23T15:41:08.623-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49374 #14 (6 connections now open)
+2015-04-23T15:41:08.624-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49375 #15 (7 connections now open)
+2015-04-23T15:41:08.624-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49376 #16 (8 connections now open)
+2015-04-23T15:41:08.646-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49387 #17 (9 connections now open)
+2015-04-23T15:41:08.646-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49388 #18 (10 connections now open)
+2015-04-23T15:41:08.660-0400 I NETWORK  [conn17] end connection 127.0.0.1:49387 (9 connections now open)
+2015-04-23T15:41:08.660-0400 I NETWORK  [conn18] end connection 127.0.0.1:49388 (8 connections now open)
+2015-04-23T15:41:08.661-0400 I NETWORK  [conn12] end connection 127.0.0.1:49372 (7 connections now open)
+2015-04-23T15:41:08.661-0400 I NETWORK  [conn13] end connection 127.0.0.1:49373 (7 connections now open)
+2015-04-23T15:41:08.661-0400 I NETWORK  [conn14] end connection 127.0.0.1:49374 (6 connections now open)
+2015-04-23T15:41:08.662-0400 I NETWORK  [conn15] end connection 127.0.0.1:49375 (6 connections now open)
+2015-04-23T15:41:08.662-0400 I NETWORK  [conn16] end connection 127.0.0.1:49376 (3 connections now open)
+2015-04-23T15:41:22.899-0400 I NETWORK  [conn9] end connection 127.0.0.1:49361 (2 connections now open)
+2015-04-23T15:41:22.901-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49394 #19 (3 connections now open)
+2015-04-23T15:41:22.906-0400 I NETWORK  [conn10] end connection 127.0.0.1:49363 (2 connections now open)
+2015-04-23T15:41:22.907-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49396 #20 (3 connections now open)
+2015-04-23T15:41:52.920-0400 I NETWORK  [conn19] end connection 127.0.0.1:49394 (2 connections now open)
+2015-04-23T15:41:52.921-0400 I NETWORK  [conn20] end connection 127.0.0.1:49396 (1 connection now open)
+2015-04-23T15:41:52.922-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49445 #21 (2 connections now open)
+2015-04-23T15:41:52.924-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49448 #22 (3 connections now open)
+2015-04-23T15:42:22.932-0400 I NETWORK  [conn21] end connection 127.0.0.1:49445 (2 connections now open)
+2015-04-23T15:42:22.933-0400 I NETWORK  [conn22] end connection 127.0.0.1:49448 (1 connection now open)
+2015-04-23T15:42:22.935-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49458 #23 (2 connections now open)
+2015-04-23T15:42:22.937-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49459 #24 (3 connections now open)
+2015-04-23T15:42:52.946-0400 I NETWORK  [conn24] end connection 127.0.0.1:49459 (2 connections now open)
+2015-04-23T15:42:52.946-0400 I NETWORK  [conn23] end connection 127.0.0.1:49458 (1 connection now open)
+2015-04-23T15:42:52.947-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49472 #25 (2 connections now open)
+2015-04-23T15:42:52.948-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49473 #26 (3 connections now open)
+2015-04-23T15:43:22.959-0400 I NETWORK  [conn25] end connection 127.0.0.1:49472 (2 connections now open)
+2015-04-23T15:43:22.961-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49476 #27 (3 connections now open)
+2015-04-23T15:43:22.962-0400 I NETWORK  [conn26] end connection 127.0.0.1:49473 (2 connections now open)
+2015-04-23T15:43:22.964-0400 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:49480 #28 (3 connections now open)
